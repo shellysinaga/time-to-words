@@ -1,4 +1,4 @@
-const  { convertTimeToWords } = require('./index');
+const { convertTimeToWords } = require('./index');
 
 describe('Time to words', () => {
   it('Handles midnight', () => {
@@ -11,8 +11,23 @@ describe('Time to words', () => {
     expect(timeInWords).toBe('half past eight');
   });
 
-  it('Handles times after 30 mins - 2:45', () => {
-    const timeInWords = convertTimeToWords('2:45');
-    expect(timeInWords).toBe('quarter to three');
+  fit('Handles times after 30 mins - 2:45', () => {
+    const timeInWords = convertTimeToWords('2:50');
+    expect(timeInWords).toBe('ten to three');
+  });
+
+  it('Handles midday', () => {
+    const timeInWords = convertTimeToWords('12:00');
+    expect(timeInWords).toBe('midday');
+  });
+
+  it('Handles times before 30 min - 2:15', () => {
+    const timeInWords = convertTimeToWords('2:15');
+    expect(timeInWords).toBe('quarter past two');
+  });
+
+  it('Handles times with 00 minutes - 2:00', () => {
+    const timeInWords = convertTimeToWords('2:00');
+    expect(timeInWords).toBe('two o\'clock');
   });
 });
